@@ -1,0 +1,217 @@
+﻿@using twright_blog.Models
+
+@model BlogPost
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<!-- breadcumb-area start -->
+<div class="breadcumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>@Model.Title</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcumb-area end -->
+<!-- .blog-details.html-area start -->
+<div class="blog-details-area ptb-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="blog-wrapper">
+                        <div class="blog-images">
+                            @if (Model.MediaUrl != null)
+                            {
+                                <img class="img-responsive" src="@Model.MediaUrl" alt="">
+                            }
+
+                            @*<img src="~/images/blog/3.jpg" alt="">*@
+
+                        </div>
+                        <div class="blog-meta">
+                            <ul>
+                                <li>@Model.Created.DateTime</li>
+                                <li>/</li>
+                                <li><a href="#">Travis Wright</a></li>
+                            </ul>
+                        </div>
+                        @*<p>This is where the body of my blog will go for details. This is where the body of my blog will go for details. This is where the body of my blog will go for details. This is where the body of my blog will go for details.</p>*@
+                        <p>@Html.Raw(Model.Body)</p>
+
+                    
+
+                    <ul class="socil-media">
+                        @*<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fa fa-skype"></i></a></li>*@
+                    </ul>
+
+                    <div class="comment-main">
+                        <h3 class="blog-title">Comments<span>(@Model.Comments.Count)</span></h3> @*Auto Count*@
+                        <ol class="comments">
+                            @foreach (var comment in Model.Comments.OrderByDescending (c => c.Created))
+                            {
+                                <li class="comment even thread-even depth-1" id="comment-1">
+                                    <div id="div-comment-1" class="comment-wrap">
+                                        <div class="comment-theme">
+                                            @*<div class="comment-image">
+                                                <img src="assets/images/comment/1.jpg" alt="Jhon"> User Image
+                                            </div>*@
+                                        </div>
+                                        <div class="comment-main-area">
+                                            <div class="comment-wrapper">
+                                                <div class="sewl-comments-meta">
+                                                    <h4>@comment.Author.DisplayName</h4>
+                                                    <span>@comment.Created</span>
+                                                </div>
+                                                <div class="comment-area">
+                                                    <p>@comment.CommentBody</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ol>
+                    </div>
+
+                    @*Code for admin/login in etc*@
+
+                    <div id="respond" class="sewl-comment-form comment-respond"> 
+                        <h3 id="reply-title" class="blog-title">Leave a comment</h3>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+                            { 
+                                @Html.AntiForgeryToken()
+
+                                @Html.Hidden("BlogPostId", Model.Id)
+
+                                @Html.HiddenFor(model => Model.Slug)
+
+                                <div class="col-md-12">
+                                    <textarea style="border:1px solid orange;" name="CommentBody" rows="10" cols="150" placeholder="Enter Comment"></textarea>
+                                </div>
+                                <button type="submit" class="blogbtn btn-default">Add Comment</button>
+                            }
+                        }
+                        else
+                        {
+                            <br /><span> You have to be registered and logged in to add comments...</span><br />
+                            @Html.ActionLink("Login", "Login", "Account", null, new { @class= "blogbtn btn-default"})
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <p>
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) @:|
+                    @Html.ActionLink("Back to List", "Index")
+                }
+
+
+            </p>
+        </div>
+    </div>
+
+<br />
+<br />
+<br />
+    <!-- .blog-details.html-area end -->
+    @*Scaffolded Code
+
+        <h2>Details</h2>
+        <div>
+            <h4>BlogPost</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Slug)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Slug)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Body)
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.Body)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Abstract)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Abstract)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.MediaUrl)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MediaUrl)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Published)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Published)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Created)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Created)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Updated)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Updated)
+                </dd>
+
+            </dl>
+        </div>
+
+            if (Model.MediaURL != null)
+            {
+            < img class="img=responsive" src="@Model.MediaURL" alt="">
+            }*@
+
+

@@ -1,0 +1,198 @@
+﻿@using System.Globalization
+@using twright_blog.Models;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<BlogPost>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*@if (User.IsInRole("Admin"))
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }*@
+
+<!-- breadcumb-area start -->
+<div class="breadcumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Blogs</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcumb-area end -->
+<!-- blog-area start -->
+<div class="blog-area">
+    <div class="container">
+        <div class="row">
+            @foreach (var post in Model)
+            {
+                <div class="col-lg-4  col-md-6 col-12">
+                    <div class="blog-wrap">
+                        <div class="blog-image">
+                            @if (post.MediaUrl != null)
+                            {
+                                <img src="@post.MediaUrl">
+                            }
+                            @*<img src="assets/images/popular/1.jpg" alt="">*@
+                            <ul>
+                                <li>@post.Created.Day</li>
+                                <li>@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(post.Created.Month).Substring(0, 3)</li>
+
+
+                            </ul>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <ul>
+                                    <li>@post.Comments.Count<i class="fa fa-comments"></i>Comments</li>
+                                </ul>
+                            </div>
+                            <h3><a href=@Url.Action("Details", "BlogPosts", new {post.Slug})> @post.Title</a></h3>
+                            <p>@post.Abstract</p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @*Template Paging Code*@
+            <div class="col-12">
+                <div class="pagination-wrapper text-center font-weight-bold">
+                    @*<ul*@ @*class="page-numbers">*@
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchStr=ViewBag.Search }))
+                    @*</ul>*@
+                </div>
+            </div>
+
+
+            @*<div class="col-12">
+                <div class="pagination-wrapper text-center mb-30">
+                    <ul class="page-numbers">
+                        <li><a class="prev page-numbers" href="#"><i class="fa fa-arrow-left"></i></a></li>
+                        <li><span class="page-numbers current">1</span></li>
+                        <li><a class="page-numbers" href="#">2</a></li>
+                        <li><a class="page-numbers" href="#">3</a></li>
+                        <li><a class="next page-numbers" href="#"><i class="fa fa-arrow-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>*@
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+<!-- blog-area end -->
+<!-- instagram-area start -->
+@*<div class="instagram-area mb-80">
+        <div class="instagram-wrap">
+            <a href="#"><img src="assets/images/instragram/1.jpg" alt=""></a>
+        </div>
+        <div class="instagram-wrap">
+            <a href="#"><img src="assets/images/instragram/2.jpg" alt=""></a>
+        </div>
+        <div class="instagram-wrap">
+            <a href="#"><img src="assets/images/instragram/3.jpg" alt=""></a>
+        </div>
+        <div class="instagram-wrap">
+            <a href="#"><img src="assets/images/instragram/4.jpg" alt=""></a>
+        </div>
+        <div class="instagram-wrap">
+            <a href="#"><img src="assets/images/instragram/5.jpg" alt=""></a>
+        </div>
+        <div class="instagram-wrap">
+            <a href="#"><img src="assets/images/instragram/2.jpg" alt=""></a>
+        </div>
+        <div class="instagram-content">
+            <a href="#">Follow Instragram</a>
+        </div>
+    </div>*@
+
+<!-- instagram-area end -->
+@*//Old Code*@
+<table class="table">
+    @*<tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slug)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Body)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Abstract)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MediaUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Published)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Updated)
+            </th>
+            <th></th>
+        </tr>*@
+
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+                </td>
+                <td>
+                    @Html.Raw(item.Body)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Abstract)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MediaUrl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Published)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Updated)
+                </td>*@
+            @*<td>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) @:|
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }) @:|
+                    }
+
+                    @Html.ActionLink("Details", "Details", new { slug = item.Slug })
+
+                </td>*@
+        </tr>
+    }
+
+</table>

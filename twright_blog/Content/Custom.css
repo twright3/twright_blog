@@ -1,0 +1,87 @@
+﻿.tempNav {
+    font-size: 15px;
+    font-weight: 700;
+    padding: 40px 0px;
+    display: block;
+    text-transform: uppercase;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    text-decoration: none;
+    color: #222;
+}
+
+.tempNav:hover {
+    color: orange;
+    text-decoration: none;
+}
+
+.custom pagination > li:first-child > a, .pagination > li:first-child > span {
+    height: 40px;
+    width: 40px;
+    display: block;
+    line-height: 40px;
+    background: #222;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.custom-pagination-wrapper {
+    margin-top: 20px;
+}
+
+.custom-pagination-wrapper ul li {
+    display: inline-block;
+    margin: 0px 2px;
+}
+
+.custom-pagination-wrapper ul li a,
+.custom-pagination-wrapper ul li span {
+    height: 40px;
+    width: 40px;
+    display: block;
+    line-height: 40px;
+    background: #222;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.custom-pagination-wrapper ul li a:hover,
+.custom-pagination-wrapper ul li span {
+    background: #f47e00;
+}
+
+
+.blogbtn {
+  display: inline-block;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #ff9000;
+  border: 1px solid #ff9000;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.contact-booking-content {
+    padding: 0px 0;
+}
+
+.contact-booking-content a {
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 20px;
+    background: #f47e00;
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+}

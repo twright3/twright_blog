@@ -1,0 +1,85 @@
+﻿@model twright_blog.Models.EmailModel
+
+<body>
+    <!-- breadcumb-area start -->
+    <div class="breadcumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcumb-wrap text-center text-white">
+                        <h2>Contact Me</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcumb-area end -->
+    <!-- contact-area start -->
+    <div class="contact-area ptb-80">
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-8">
+                        <div class="contact-form">
+                            <div class="cf-msg"></div>
+                               @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.TextBoxFor(m => m.FromName, new { @class = "form-control", placeholder = "Name" })
+                                            @Html.ValidationMessageFor(m => m.FromName)
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.TextBoxFor(m => m.FromEmail, new { @class = "form-control", placeholder = "example@email.com" })
+                                            @Html.ValidationMessageFor(m => m.FromEmail)
+                                        </div>
+
+                                        <div class="col-12">
+                                            @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", placeholder = "Subject" })
+                                            @Html.ValidationMessageFor(m => m.Subject)
+                                        </div>
+
+                                        <div class="col-12">
+                                            @Html.TextBoxFor(m => m.Body, new { @class = "form-control", placeholder = "type message here." })
+                                            @Html.ValidationMessageFor(m => m.Body)
+                                        </div>
+
+                                        <div class="col-12">
+                                            <button id="submit" class="cont-submit btn-contact" name="submit">SEND MESSAGE</button>
+                                        </div>
+
+                                    </div>
+                               }
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="contact-wrap">
+            <ul>
+                <li>
+                    <i class="fa fa-home"></i> Address:
+                    <p>Thomasville, NC</p>
+                </li>
+                <li>
+                    <i class="fa fa-envelope"></i> Email address:
+                    <p>
+                        <span>travwright3@gmail.com </span>
+                    </p>
+                </li>
+                <li>
+                    <i class="fa fa-phone"></i> phone number:
+                    <p>
+                        <span>(336) 414-3255</span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- contact-area end -->
+</body>
